@@ -8,15 +8,27 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-    <h1 class="title">MEMORIZZA I NUMERI</h1>
-    <ul class="numbers">
-        <li class="number-item">1</li>
-    </ul>
-            <div class="number-result">
-                <p>Hai inserito i numeri: <br> <span class="user-numbers"></span></p>
-                <p>Hai indovinato <span class="num"> </span> Numeri</p>
-                <p>I Numeri indovitati sono: <br> <span class="correct-numbers"></span></p>
+
+    <!-- Simon Says app -->
+    <div class="app">
+        <div class="num-list">
+            <h1 class="title">Simon Says</h1>
+            <ul class="num-rand">
+            </ul>
+            <div class="result">
+                <div class="user-info">
+                    <ul class="user-num">
+                        <p>I numeri che hai inserito sono: </p>
+                    </ul>
+                    <p>Hai trovato <span class="num-quantity"></span> numeri giusti</p>
+                    <ul class="right-num">
+                        <p>I numeri corretti sono:</p>
+                    </ul>
+                </div>
+
             </div>
+        </div>
+    </div>
 
     <!-- JQUERY     -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

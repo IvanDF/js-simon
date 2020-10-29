@@ -16,11 +16,6 @@ $(document).ready(function(){
 
     // RICHIESTA DATI
 
-    size = parseInt( prompt( 'CON QUANTI NUMERI VUOI GIOCARE' ) );
-    while ( ( isNaN(size) ) || ( size < 2 ) ) {
-        size = parseInt( prompt( 'INSERISCI CON QUANTI NUMERI VUOI GIOCARE' ) );
-    }
-
     var numIniziale = parseInt( prompt( 'Inserisci il primo numero del range' ) );
     while ( isNaN(numIniziale) ) {
         var numIniziale = parseInt( prompt( 'Inserisci il primo numero del range' ) );
@@ -42,7 +37,7 @@ $(document).ready(function(){
             if (! numeri.includes(numeriRand)) {
                 numeri.push(numeriRand);
                 // alert(numeriRand)
-                $('.numbers').prepend('<li class="number-item">' + numeriRand + '</li>')
+                $('.num-rand').prepend('<li class="num-item">' + numeriRand + '</li>')
             }
         }
     }
@@ -51,11 +46,14 @@ $(document).ready(function(){
     
     setTimeout(function (){
         
-        $('.number-item').addClass('hide');
+        $('.num-item').addClass('hide');
+
         
         setTimeout(function(){
+
+            
+
             // RICHIESTA NUMERI GENRATI
-    
             for ( var i = 0 ; i < size ; i++ ) {
                 var numUtente = parseInt( prompt( 'Inserisci un numero' ) );
                 while ( isNaN(numUtente) ) {
@@ -73,13 +71,12 @@ $(document).ready(function(){
                     }
                 }
             }
-            $('.number-result').addClass('visible')
-            $('.user-numbers').prepend('<span>' + numeriUtente + '</span>');
-            $('.num').text(numeriGiusti.length);
-            $('.correct-numbers').text(numeriGiusti);
-            $('.number-item').removeClass('hide');
-            $('.title').text('I NUMERI SONO:');
-        },30000)
+            $('.user-num').append('<li class="user-item">' + numeriUtente + '</li>');
+            $('.num-quantity').text(numeriGiusti.length);
+            $('.right-num').text(numeriGiusti);
+            $('.num-rand .num-item').removeClass('hide');
+            $('.title').text('Simon said:');
+        },5000)
     }, 5000);
 
 }); // <-- end doc ready
