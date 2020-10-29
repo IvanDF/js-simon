@@ -76,7 +76,7 @@ $(document).ready(function(){
             $('.right-num').text(numeriGiusti);
             $('.num-rand .num-item').removeClass('hide');
             $('.title').text('Simon said:');
-        },5000)
+        },30000)
     }, 5000);
 
 }); // <-- end doc ready
