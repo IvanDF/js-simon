@@ -42,9 +42,10 @@ h1 {
                 color .3s .2s;
 }
 
-.number-item.hide {
+.hide {
     transform: rotateY(180deg);
     color: rgb(74, 161, 161);
+    background: rgb(74, 161, 161);
     transition: transform 1.3s,
                 background .3s .2s,
                 color .3s .2s;

@@ -8,7 +8,7 @@
 $(document).ready(function(){
 
     // REFERENXEZE
-    var size = 0;
+    var size = 5;
 
     var numeri = [];
     var numeriUtente = [];
@@ -79,8 +79,8 @@ $(document).ready(function(){
             $('.correct-numbers').text(numeriGiusti);
             $('.number-item').removeClass('hide');
             $('.title').text('I NUMERI SONO:');
-        },300)
-    }, 500);
+        },30000)
+    }, 5000);
 
 }); // <-- end doc ready
 
