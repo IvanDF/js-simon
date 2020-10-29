@@ -12,6 +12,7 @@ $(document).ready(function(){
 
     var numeri = [];
     var numeriUtente = [];
+    var numeriGiusti = [];
 
     // RICHIESTA DATI
 
@@ -25,7 +26,7 @@ $(document).ready(function(){
         var numIniziale = parseInt( prompt( 'Inserisci il primo numero del range' ) );
     }
 
-    var numFinale = parseInt( prompt( 'Inserisci il secondo numero del range, superiore a ' + ( size + numIniziale ) ) );
+    var numFinale = parseInt( prompt( 'Inserisci l\'ultimo numero del range, superiore a ' + ( size + numIniziale ) ) );
     while ( ( isNaN(numFinale) ) || ( numFinale < ( size + numIniziale ) )  ) {
         if ( isNaN(numFinale) ) {
             var numFinale = parseInt( prompt( 'Non è stato insetito un numero, prego inserire l\'ultimo numero del range, superiore a ' + ( size + numIniziale ) ) );
@@ -45,7 +46,7 @@ $(document).ready(function(){
         }
     }
     // CONTROLLO NUMERI TEMPORANEO
-    console.log(numeri);
+    console.log('Numeri casuali da indovinare ' + numeri);
 
     setTimeout(function (){
 
@@ -53,17 +54,21 @@ $(document).ready(function(){
         for ( var i = 0 ; i < size ; i++ ) {
             var numUtente = parseInt( prompt( 'Inserisci un numero' ) );
             while ( isNaN(numUtente) ) {
-                var numUtente = parseInt( prompt( 'Inserisci un numero cane' ) );
+                var numUtente = parseInt( prompt( 'Non è stato inserito un numero' ) );
             }
             numeriUtente.push(numUtente);  
-        }
-        console.log(numeriUtente);
-
-        for ( var i = 0 ; i < size ; i++ ) {
-            if ( numeri[i] === numeriUtente[i] ) {
-                console.log(numeri[i]);
+            if ( numeri.includes(numUtente) ) {
+                
+                if (! numeriGiusti.includes(numUtente)) {
+                    numeriGiusti.push(numUtente);
+                } else {
+                    var numUtente = parseInt( prompt( 'Hai già inserito questo numero, inserirne un altro' ) );
+                }
             }
         }
+        console.log( 'Numeri inseriti dall\'utente ' + numeriUtente);
+        console.log( 'Hai indovinato ' + numeriGiusti.length + ' numeri');
+        console.log( 'Numeri indovitati ' + numeriGiusti);
     }, 1000);
 
 }); // <-- end doc ready
