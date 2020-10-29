@@ -3,3 +3,69 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+body {
+    height: 100vh;
+}
+
+li {
+    padding: 40px 50px;
+    margin: 0 10px;
+    font-size: 48px;
+}
+
+.tavolo {
+    position: relative;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+}
+
+.tavolo-item {
+    color: #000;
+    background: #777;
+    font-weight: bold;
+    transition: transform 1s,
+                background .5s,
+                color .5s;
+}
+
+.tavolo-risultato {
+    z-index: 1;
+    position: absolute;
+    bottom: -100%;
+    left: 0;
+    display: flex;
+    list-style: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    background: #222;
+    color: #fff;
+    transition: bottom 1s;
+}
+
+.hide {
+    transform: rotateY(180deg);
+    background: #222;
+    color: #222;
+    transition: all 1s;
+}
+
+.visible {
+    bottom: 0;
+}
+
+.visible-numbers {
+    transform: rotateY(0);
+    background: #222;
+    z-index: 2;
+    color: #fff;
+    align-self: baseline;
+    margin-top: 60px;
+}

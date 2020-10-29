@@ -16,9 +16,9 @@ $(document).ready(function(){
 
     // RICHIESTA DATI
 
-    size = parseInt( prompt( 'Inserisci con quanti numeri vuoi giocare' ) );
+    size = parseInt( prompt( 'CON QUANTI NUMERI VUOI GIOCARE' ) );
     while ( ( isNaN(size) ) || ( size < 2 ) ) {
-        size = parseInt( prompt( 'Inserisci con quanti numeri vuoi giocare' ) );
+        size = parseInt( prompt( 'INSERISCI CON QUANTI NUMERI VUOI GIOCARE' ) );
     }
 
     var numIniziale = parseInt( prompt( 'Inserisci il primo numero del range' ) );
@@ -41,35 +41,45 @@ $(document).ready(function(){
             var numeriRand = numRandom(numIniziale, numFinale);
             if (! numeri.includes(numeriRand)) {
                 numeri.push(numeriRand);
-                alert(numeriRand)
+                // alert(numeriRand)
+                $('.tavolo').prepend('<li class="tavolo-item">' + numeriRand + '</li>')
             }
         }
     }
     // CONTROLLO NUMERI TEMPORANEO
     console.log('Numeri casuali da indovinare ' + numeri);
-
+    
     setTimeout(function (){
-
-        // RICHIESTA NUMERI GENRATI
-        for ( var i = 0 ; i < size ; i++ ) {
-            var numUtente = parseInt( prompt( 'Inserisci un numero' ) );
-            while ( isNaN(numUtente) ) {
-                var numUtente = parseInt( prompt( 'Non è stato inserito un numero' ) );
-            }
-            numeriUtente.push(numUtente);  
-            if ( numeri.includes(numUtente) ) {
-                
-                if (! numeriGiusti.includes(numUtente)) {
-                    numeriGiusti.push(numUtente);
-                } else {
-                    var numUtente = parseInt( prompt( 'Hai già inserito questo numero, inserirne un altro' ) );
+        
+        $('.tavolo-item').addClass('hide');
+        
+        setTimeout(function(){
+            // RICHIESTA NUMERI GENRATI
+    
+            for ( var i = 0 ; i < size ; i++ ) {
+                var numUtente = parseInt( prompt( 'Inserisci un numero' ) );
+                while ( isNaN(numUtente) ) {
+                    var numUtente = parseInt( prompt( 'Non è stato inserito un numero' ) );
+                }
+                numeriUtente.push(numUtente);  
+                if ( numeri.includes(numUtente) ) {
+                    
+                    if (! numeriGiusti.includes(numUtente)) {
+                        numeriGiusti.push(numUtente);
+                    } else {
+                        while ( numeriGiusti.includes(numUtente) ) {
+                            var numUtente = parseInt( prompt( 'Hai già inserito questo numero, inserirne un altro' ) );
+                        }
+                    }
                 }
             }
-        }
-        console.log( 'Numeri inseriti dall\'utente ' + numeriUtente);
-        console.log( 'Hai indovinato ' + numeriGiusti.length + ' numeri');
-        console.log( 'Numeri indovitati ' + numeriGiusti);
-    }, 1000);
+            $('.tavolo-risultato').addClass('visible')
+            $('.numeri-inseriti').text( numeriUtente);
+            $('.indvinati').text(numeriGiusti.length);
+            $('.numeri-indovinati').text(numeriGiusti);
+            $('.tavolo-item').addClass('visible-numbers');
+        },30000)
+    }, 5000);
 
 }); // <-- end doc ready
 
