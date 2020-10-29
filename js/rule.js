@@ -42,7 +42,7 @@ $(document).ready(function(){
             if (! numeri.includes(numeriRand)) {
                 numeri.push(numeriRand);
                 // alert(numeriRand)
-                $('.tavolo').prepend('<li class="tavolo-item">' + numeriRand + '</li>')
+                $('.numbers').prepend('<li class="number-item">' + numeriRand + '</li>')
             }
         }
     }
@@ -51,7 +51,7 @@ $(document).ready(function(){
     
     setTimeout(function (){
         
-        $('.tavolo-item').addClass('hide');
+        $('.number-item').addClass('hide');
         
         setTimeout(function(){
             // RICHIESTA NUMERI GENRATI
@@ -73,13 +73,14 @@ $(document).ready(function(){
                     }
                 }
             }
-            $('.tavolo-risultato').addClass('visible')
-            $('.numeri-inseriti').text( numeriUtente);
-            $('.indvinati').text(numeriGiusti.length);
-            $('.numeri-indovinati').text(numeriGiusti);
-            $('.tavolo-item').addClass('visible-numbers');
-        },30000)
-    }, 5000);
+            $('.number-result').addClass('visible')
+            $('.user-numbers').prepend('<span>' + numeriUtente + '</span>');
+            $('.num').text(numeriGiusti.length);
+            $('.correct-numbers').text(numeriGiusti);
+            $('.number-item').removeClass('hide');
+            $('.title').text('I NUMERI SONO:');
+        },300)
+    }, 500);
 
 }); // <-- end doc ready
 
