@@ -4,7 +4,6 @@
  * Il software dirà quali e quanti numeri sono stati azzeccati
  */
 
-
 $(document).ready(function(){
 
     // REFERENXEZE
@@ -13,22 +12,8 @@ $(document).ready(function(){
     var numeri = [];
     var numeriUtente = [];
     var numeriGiusti = [];
-
-    // RICHIESTA DATI
-
-    var numIniziale = parseInt( prompt( 'Inserisci il primo numero del range' ) );
-    while ( isNaN(numIniziale) ) {
-        var numIniziale = parseInt( prompt( 'Inserisci il primo numero del range' ) );
-    }
-
-    var numFinale = parseInt( prompt( 'Inserisci l\'ultimo numero del range, superiore a ' + ( size + numIniziale ) ) );
-    while ( ( isNaN(numFinale) ) || ( numFinale < ( size + numIniziale ) )  ) {
-        if ( isNaN(numFinale) ) {
-            var numFinale = parseInt( prompt( 'Non è stato insetito un numero, prego inserire l\'ultimo numero del range, superiore a ' + ( size + numIniziale ) ) );
-        } else if ( numFinale < ( size + numIniziale ) ) {
-            var numFinale = parseInt( prompt( 'Non hai inserito un numero superiore a ' + ( size + numIniziale ) ) );
-        }
-    }
+    var numIniziale = 0
+    var numFinale = 100
 
     // CONTROLLO DOPPIONI
     for ( i = 0 ; i < size ; i++ ) {
@@ -41,6 +26,7 @@ $(document).ready(function(){
             }
         }
     }
+
     // CONTROLLO NUMERI TEMPORANEO
     console.log('Numeri casuali da indovinare ' + numeri);
     
@@ -48,35 +34,47 @@ $(document).ready(function(){
         
         $('.num-item').addClass('hide');
 
-        
-        setTimeout(function(){
+        var loadingBar = $('.bar');        
+        var width = 100;
+        var countdown = $('.timer');
+        var secondi = 30;
+        var tempoScaduto = setInterval(function() {
 
-            
-
-            // RICHIESTA NUMERI GENRATI
-            for ( var i = 0 ; i < size ; i++ ) {
-                var numUtente = parseInt( prompt( 'Inserisci un numero' ) );
-                while ( isNaN(numUtente) ) {
-                    var numUtente = parseInt( prompt( 'Non è stato inserito un numero' ) );
-                }
-                numeriUtente.push(numUtente);  
-                if ( numeri.includes(numUtente) ) {
-                    
-                    if (! numeriGiusti.includes(numUtente)) {
-                        numeriGiusti.push(numUtente);
-                    } else {
-                        while ( numeriGiusti.includes(numUtente) ) {
-                            var numUtente = parseInt( prompt( 'Hai già inserito questo numero, inserirne un altro' ) );
+            if ( secondi == 0 ) {
+                // RICHIESTA NUMERI GENRATI
+                for ( var i = 0 ; i < size ; i++ ) {
+                    var numUtente = parseInt( prompt( 'Inserisci un numero' ) );
+                    while ( isNaN(numUtente) ) {
+                        var numUtente = parseInt( prompt( 'Non è stato inserito un numero' ) );
+                    }
+                    numeriUtente.push(numUtente);  
+                    if ( numeri.includes(numUtente) ) {
+                        
+                        if (! numeriGiusti.includes(numUtente)) {
+                            numeriGiusti.push(numUtente);
+                        } else {
+                            while ( numeriGiusti.includes(numUtente) ) {
+                                var numUtente = parseInt( prompt( 'Hai già inserito questo numero, inserirne un altro' ) );
+                            }
                         }
                     }
                 }
+                $('.user-num').append('<li class="user-item">' + numeriUtente + '</li>');
+                $('.num-quantity').text(numeriGiusti.length);
+                $('.right-num').text(numeriGiusti);
+                $('.num-rand .num-item').removeClass('hide');
+                $('.title').text('Simon said:');
+
+                clearInterval(tempoScaduto)
+            } else {
+
+                width = width - (100/30);
+                loadingBar.css('width', width + '%');
+                countdown.text(secondi);
+                secondi--; 
+
             }
-            $('.user-num').append('<li class="user-item">' + numeriUtente + '</li>');
-            $('.num-quantity').text(numeriGiusti.length);
-            $('.right-num').text(numeriGiusti);
-            $('.num-rand .num-item').removeClass('hide');
-            $('.title').text('Simon said:');
-        },30000)
+        },1000)
     }, 5000);
 
 }); // <-- end doc ready
